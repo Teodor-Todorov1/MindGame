@@ -1,9 +1,8 @@
+"use strict";
+
 const cards = document.querySelectorAll(".cat-card");
-
 const HIGH_SCORES_MODE = "highScores";
-
 const NO_OF_HIGH_SCORES = 5;
-
 const maxTime = 2 * 60;
 const musicThemes = [
   "gametheme",
@@ -11,6 +10,10 @@ const musicThemes = [
   "gametheme3",
   "gametheme4",
   "gametheme5",
+  "gametheme6",
+  "gametheme7",
+  "gametheme8",
+  "gametheme9",
 ];
 let numCardsSelected = 0;
 let lockBoard = false;
@@ -102,7 +105,7 @@ function formatScore(score) {
 }
 
 function randomMusic() {
-  let musicNum = Math.floor(Math.random() * 5);
+  let musicNum = Math.floor(Math.random() * 9);
   return `${musicThemes[musicNum]}.mp3`;
 }
 /**
@@ -158,17 +161,17 @@ function startGame() {
   document.getElementById("startButton").disabled = true;
   document.getElementById("stopButton").disabled = false;
 
-  axios
-    .get(
-      "https://www.randomnumberapi.com/api/v1.0/random?min=0&max=11&count=12"
-    )
-    .then((response) => {
-      nums = response.data;
-      for (let i = 0; i < nums.length; i++) cards[i].style.order = nums[i];
-    })
-    .catch((error) => {
-      cards.forEach((c) => (c.style.order = Math.floor(Math.random() * 12)));
-    });
+  // axios
+  //   .get(
+  //     "https://www.randomnumberapi.com/api/v1.0/random?min=0&max=11&count=12"
+  //   )
+  //   .then((response) => {
+  //     nums = response.data;
+  //     for (let i = 0; i < nums.length; i++) cards[i].style.order = nums[i];
+  //   })
+  // .catch((error) => {
+  cards.forEach((c) => (c.style.order = Math.floor(Math.random() * 12)));
+  // });
   document.getElementById("score").innerText = score;
   document.getElementById("gameover").style.display = "none";
   cardsLeft = 12;
@@ -187,8 +190,9 @@ function startGame() {
  * @author Teodor Todorov
  * @param {*} bForce if applied overrides current state.
  */
+
 function startStopMusic(bForce) {
-  e = document.getElementById("musicStart");
+  let e = document.getElementById("musicStart");
 
   if (bForce === undefined) {
     if (mySound.paused) {
@@ -332,4 +336,147 @@ function showTime() {
     clearTimeout(timerID);
   }
   timerID = setTimeout(showTime, 1000);
+}
+
+/**
+ * @description Shop section
+ * @author  Teodor Todorov , Stilyan Atanasov
+ */
+
+const shopButton = document.getElementById(`shopBTN`);
+const shopSection = document.getElementById(`shopSection`);
+
+/**
+ * @description Opening/Closing the shop
+ * @author Teodor Todorov , Stilyan Atanasov
+ */
+
+shopButton.onclick = function () {
+  if (shopSection.className == `closed`) {
+    shopSection.className = ``;
+  } else {
+    shopSection.className = `closed`;
+  }
+};
+
+const allBacks = document.querySelectorAll(".back");
+
+/**
+ * @description Replacing the backs and the avalability description of the cards.
+ * @author Teodor Todorov , Stilyan Atanasov
+ * @param {*} backCard
+ */
+
+let replaceCards = function (backCard) {
+  let backNum = backCard.id.split("_")[1];
+  allBacks.forEach((card) => {
+    card.src = backsArr[backNum].src;
+  });
+  let oldSelectedCardBack = selectedCardBack;
+
+  selectedCardBack = backCard;
+
+  oldSelectedCardBack.firstElementChild.innerHTML = translate(
+    "CardDesignLabelOnHover",
+    oldSelectedCardBack
+  );
+
+  oldSelectedCardBack.className =
+    "shopSection_body_items_itemContent_fader_notSelected";
+
+  selectedCardBack.firstElementChild.innerHTML = translate(
+    "CardDesignLabelOnHover",
+    selectedCardBack
+  );
+
+  selectedCardBack.className =
+    "shopSection_body_items_itemContent_fader_Selected";
+};
+
+/**
+ * @description Performs actions when selecting designs of cards.
+ * @author Teodor Todorov, Stilyan Atanasov
+ * @param {*} backCard
+ */
+
+let selectBack = function (backCard) {
+  let backNum = backCard.id.split("_")[1];
+  if (cardsBackgroundsToChange.includes(backNum)) {
+    replaceCards(backCard);
+  } else if (score >= backsArr[backNum].price) {
+    cardsBackgroundsToChange.push(backNum);
+    replaceCards(backCard);
+    score -= backsArr[backNum].price;
+    document.getElementById("score").innerText = score;
+  } else {
+    alert(translate("not_enough"));
+  }
+};
+
+/**
+ * @description Switching between sections of the shop.
+ * @author Teodor Todorov, Stilyan Atanasov
+ */
+
+function chngBGS() {
+  document.getElementById(`section2MAG`).className = `shopSection_body2`;
+  document.getElementById(`section1MAG`).className = `shopSection_body closed`;
+}
+
+function chngCrds() {
+  document.getElementById(`section2MAG`).className = `shopSection_body2 closed`;
+  document.getElementById(`section1MAG`).className = `shopSection_body`;
+}
+/**
+ * @description Replacing the background of the game and the avalability description of the cards.
+ * @author Teodor Todorov, Stilyan Atanasov
+ * @param {*} bgr
+ */
+function replaceBgs(bgr) {
+  let bgNum = bgr.id.split("_")[1];
+
+  document.getElementById(`body`).className = bgsArr[bgNum].srcClass;
+  document.getElementById(`dropbtn1`).className = bgsArr[bgNum].dropbtn;
+  document.getElementById(`modeText`).className = bgsArr[bgNum].modeText;
+  document.getElementById(`scores`).className = bgsArr[bgNum].scores ?? "";
+  document.getElementById(`cardPositionFix`).className =
+    bgsArr[bgNum].cardPositionFix;
+  document.getElementById(`bgsareaContent`).className =
+    bgsArr[bgNum].bgsareaContent ?? "";
+  document.getElementById(`bgsarea`).className = bgsArr[bgNum].bgsarea;
+  document.getElementById(`bgsbgs1`).className = bgsArr[bgNum].bgsbgs1;
+  document.getElementById(`bgsbgs2`).className = bgsArr[bgNum].bgsbgs2;
+  document.getElementById(`bgsbgs3`).className = bgsArr[bgNum].bgsbgs3;
+  let oldSelectedbg = selectedBgr;
+  selectedBgr = bgr;
+  oldSelectedbg.firstElementChild.innerHTML = translate(
+    "bgsDesignLabelOnHover",
+    oldSelectedbg
+  );
+  oldSelectedbg.className =
+    "shopSection_body_items_itemContent_fader_notSelected";
+
+  selectedBgr.firstElementChild.innerHTML = translate(
+    "bgsDesignLabelOnHover",
+    selectedBgr
+  );
+  selectedBgr.className = "shopSection_body_items_itemContent_fader_Selected";
+}
+/**
+ * @description Performs actions when selecting different backgrounds.
+ * @author Teodor Todorov
+ * @param {*} bgr
+ */
+function selectBgr(bgr) {
+  let bgNum = bgr.id.split("_")[1];
+  if (bgsToChange.includes(bgNum)) {
+    replaceBgs(bgr);
+  } else if (score >= bgsArr[bgNum].price) {
+    bgsToChange.push(bgNum);
+    score -= bgsArr[bgNum].price;
+    document.getElementById("score").innerText = score;
+    replaceBgs(bgr);
+  } else {
+    alert(translate("not_enough"));
+  }
 }

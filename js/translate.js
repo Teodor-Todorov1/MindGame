@@ -4,18 +4,127 @@ const GameModes = {
   River: "river",
 };
 
+const backsArr = [
+  { src: "images/back.png", price: 0 },
+  { src: "images/card_backs/card1.png", price: 1 },
+  { src: "images/card_backs/card2.png", price: 2 },
+  { src: "images/card_backs/card3.png", price: 3 },
+  { src: "images/card_backs/card4.png", price: 4 },
+];
+
+const bgsArr = [
+  {
+    srcClass: "body",
+    dropbtn: "dropbtn",
+    modeText: "dropbtn",
+    price: 0,
+    cardPositionFix: "row justify-content-md-center",
+    bgsarea: "area closed",
+    bgsbgs1: "bg closed",
+    bgsbgs2: "bg bg2 closed",
+    bgsbgs3: "bg bg3 closed",
+  },
+  {
+    srcClass: "body1",
+    dropbtn: "dropbtn dropbtn4",
+    modeText: "dropbtn dropbtn4",
+    price: 1,
+    scores: "results4",
+    cardPositionFix: "row justify-content-md-center",
+    bgsarea: "area closed",
+    bgsbgs1: "bg",
+    bgsbgs2: "bg bg2",
+    bgsbgs3: "bg bg3",
+  },
+  {
+    srcClass: "body2",
+    dropbtn: "dropbtn dropbtn4",
+    modeText: "dropbtn dropbtn4",
+    price: 2,
+    scores: "results4",
+    cardPositionFix: "row justify-content-md-center",
+    bgsareaContent: "circles",
+    bgsarea: "area",
+    bgsbgs1: "bg closed",
+    bgsbgs2: "bg bg2 closed",
+    bgsbgs3: "bg bg3 closed",
+  },
+  {
+    srcClass: "body3",
+    dropbtn: "dropbtn dropbtn3",
+    modeText: "dropbtn dropbtn3",
+    price: 3,
+    scores: "results3",
+    cardPositionFix: "row1 justify-content-md-center",
+    bgsarea: "area closed",
+    bgsbgs1: "bg closed",
+    bgsbgs2: "bg bg2 closed",
+    bgsbgs3: "bg bg3 closed",
+  },
+  {
+    srcClass: "body4",
+    dropbtn: "dropbtn4 dropbtn",
+    modeText: "dropbtn4 dropbtn",
+    price: 4,
+    scores: "results4",
+    cardPositionFix: "row justify-content-md-center",
+    bgsarea: "area closed",
+    bgsbgs1: "bg closed",
+    bgsbgs2: "bg bg2 closed",
+    bgsbgs3: "bg bg3 closed",
+  },
+];
+
 let locale = "en";
 let theme = GameModes.Animal;
+let cardsBackgroundsToChange = ["0"];
+let selectedCardBack = document.getElementById("fader_0");
+let bgsToChange = ["0"];
+let selectedBgr = document.getElementById("bgsFader_0");
+
 const translations = {
   en: {
     modebtn: function () {
       return "Mode:  " + translations[locale][theme + "_mode"] + "🔽";
     },
+    CardDesignLabelOnHover: function (element) {
+      let backNum = element.id.split("_")[1];
+      if (backNum == selectedCardBack.id.split("_")[1]) {
+        return "Selected";
+      } else if (cardsBackgroundsToChange.includes(backNum)) {
+        return "Select";
+      } else {
+        return backsArr[backNum].price == 1
+          ? `Buy for ${backsArr[backNum].price} point`
+          : `Buy for ${backsArr[backNum].price} points`;
+      }
+    },
+    bgsDesignLabelOnHover: function (element) {
+      let bgNum = element.id.split("_")[1];
+
+      if (bgNum == selectedBgr.id.split("_")[1]) {
+        return "Selected";
+      } else if (bgsToChange.includes(bgNum)) {
+        return "Select";
+      } else {
+        return bgsArr[bgNum].price == 1
+          ? `Buy for ${bgsArr[bgNum].price} point`
+          : `Buy for ${bgsArr[bgNum].price} points`;
+      }
+    },
     river_mode: "Rivers",
     mount_mode: "Mountains",
     start: "Start",
+    shopButton: `Shop`,
+    score: "Points",
+    shopText: `SHOP`,
+    shopCardsButton: `Cards`,
+    shopBackgroundsButton: `Backgrounds`,
+    shopDesignsButton: `Designs`,
+    shopLevelsButton: `Levels`,
+    shopImagesButton: `Images`,
+    shopFactsButton: `Facts`,
     stop: "Stop",
-    score: "Score",
     settings: "Settings",
     mode: "Switch Mode",
     musicStop: "Stop Music",
@@ -25,6 +134,7 @@ const translations = {
     howTo: "How To Play",
     contact: "About Us",
     animal_mode: "Animals",
+    not_enough: "You don't have enough points!",
     about_title: "About Us",
     about_close: "Close",
     game_over: "GAME OVER",
@@ -43,11 +153,46 @@ const translations = {
     modebtn: function () {
       return "Тема:  " + translations[locale][theme + "_mode"] + "🔽";
     },
+    CardDesignLabelOnHover: function (element) {
+      let backNum = element.id.split("_")[1];
+
+      if (backNum == selectedCardBack.id.split("_")[1]) {
+        return "избрано";
+      } else if (cardsBackgroundsToChange.includes(backNum)) {
+        return "Избери";
+      } else {
+        return backsArr[backNum].price == 1
+          ? `Купи за ${backsArr[backNum].price} точкa`
+          : `Купи за ${backsArr[backNum].price} точки`;
+      }
+    },
+
+    bgsDesignLabelOnHover: function (element) {
+      let bgNum = element.id.split("_")[1];
+
+      if (bgNum == selectedBgr.id.split("_")[1]) {
+        return "избрано";
+      } else if (bgsToChange.includes(bgNum)) {
+        return "Избери";
+      } else {
+        return bgsArr[bgNum].price == 1
+          ? `Купи за ${bgsArr[bgNum].price} точка`
+          : `Купи за ${bgsArr[bgNum].price} точки`;
+      }
+    },
     river_mode: "Реки",
     mount_mode: "Планини",
     start: "Старт",
     stop: "Стоп",
-    score: "Резултат",
+    shopButton: `Магазин`,
+    score: "Точки",
+    shopText: `МАГАЗИН`,
+    shopCardsButton: `Карти`,
+    shopBackgroundsButton: `Фонове`,
+    shopDesignsButton: `Дизайни`,
+    shopLevelsButton: `Нива`,
+    shopImagesButton: `Картини`,
+    shopFactsButton: `Факти`,
     settings: "Настройки",
     mode: "Теми",
     musicStop: "Спри звука",
@@ -57,6 +202,7 @@ const translations = {
     howTo: "Правила",
     contact: "Контакти",
     animal_mode: "Животни",
+    not_enough: "Нямате достатъчно точки!",
     about_title: "За нас",
     about_close: "Затвори",
     game_over: "КРАЙ НА ИГРАТА",
@@ -91,7 +237,7 @@ function setLocale(lang) {
  */
 function translateElement(element) {
   const key = element.getAttribute("data-i18n-key");
-  const translation = translate(key);
+  const translation = translate(key, element);
   element.innerText = translation;
 }
 /**
@@ -100,10 +246,10 @@ function translateElement(element) {
  * @param {*} key
  * @returns {*}  Translated string
  */
-function translate(key) {
+function translate(key, element) {
   if (typeof translations[locale][key] == "function") {
     //console.log(translations[locale][key]());
-    return translations[locale][key]();
+    return translations[locale][key](element);
   } else {
     return translations[locale][key];
   }

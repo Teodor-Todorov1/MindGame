@@ -17,18 +17,40 @@
     <link rel="stylesheet" type="text/css" href="css/clippy.css" media="all" />
   </head>
   <br />
-  <body style="background: #4d060c">
+  <body id="body" class="body">
+
+<!-- backgrounds -->
+
+    <div id="bgsarea" class="area closed" >
+      <ul id="bgsareaContent" class="circles closed">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+      </ul>
+</div >
+
+<div id="bgsbgs1" class="bg closed"></div>
+<div id="bgsbgs2" class="bg bg2 closed"></div>
+<div id="bgsbgs3" class="bg bg3 closed"></div>
+
+
+
+
+
     <div class="modal fade" id="aboutModal">
       <div class="modal-dialog">
-        <div class="modal-content" style="background: #6fbcff">
+        <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title" data-i18n-key="about_title">About Us</h4>
           </div>
-          <div
-            style="font-weight: bold"
-            class="modal-body"
-            data-i18n-key="about"
-          >
+          <div class="modal-body" data-i18n-key="about">
             Теодор Тодоров Тодоров<br />
             ПМГ "Васил Друмев",Велико Търново<br />
             teo.vt.bg@gmail.com <br />
@@ -52,16 +74,12 @@
     </div>
     <div class="modal fade" id="howToModal">
       <div class="modal-dialog">
-        <div class="modal-content" style="background: #6fbcff">
+        <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title" data-i18n-key="modalTitle">Правила</h4>
             <button type="button" class="close" data-dismiss="modal"></button>
           </div>
-          <div
-            class="modal-body"
-            style="font-weight: bold"
-            data-i18n-key="howToPlay"
-          >
+          <div class="modal-body" data-i18n-key="howToPlay">
             "Mind Game" is a game that will test your memory and card
             memorization skills. When you start playing, you will see 12 cards
             face down, which consist of 6 pairs of identical cards. Your goal is
@@ -86,7 +104,7 @@
       </div>
     </div>
 
-    <div class="container" id="GameCanvas" style="display: none">
+    <div class="container" id="GameCanvas">
       <div class="dropdown" style="left: -10px; width: 250px">
         <button class="dropbtn" data-i18n-key="modebtn" id="modeText">
           Mode: Animals🔽
@@ -110,7 +128,7 @@
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn">
+        <button id="dropbtn1" class="dropbtn">
           <i class="fas fa-cog"></i>
           <span data-i18n-key="settings"> Настройки</span>
         </button>
@@ -135,7 +153,11 @@
           >
 
           <b
-            ><a href="#" data-i18n-key="lang" onclick="setLocale()"
+            ><a
+              id="languageChanger"
+              href="#"
+              data-i18n-key="lang"
+              onclick="setLocale() ;  bgReplSaverSP2()"
               >Switch Language</a
             ></b
           >
@@ -160,7 +182,7 @@
           >
         </div>
       </div>
-      <div class="row justify-content-md-center">
+      <div id="cardPositionFix" class="row justify-content-md-center">
         <div class="imgBG">
           <img src="./images/animal/logo.png" id="game_logo" alt="Logo" />
         </div>
@@ -204,8 +226,10 @@
               </h1>
             </button>
           </div>
-          <h2 class="scoreTitle" data-i18n-key="highscore">HIGH SCORES:</h2>
-          <ol class="scoreList" id="highScores"></ol>
+          <div id="scores" class="">
+            <h2 class="scoreTitle" data-i18n-key="highscore">HIGH SCORES:</h2>
+            <ol class="scoreList" id="highScores"></ol>
+          </div>
         </div>
 
         <div class="col-md-auto">
@@ -217,7 +241,7 @@
                 data-src-key="1.png"
                 alt="1"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card1" class="back" src="images/back.png" alt="Back" />
             </div>
             <div class="cat-card" data-cat-name="1">
               <img
@@ -226,7 +250,7 @@
                 data-src-key="1.png"
                 alt="1"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card2" class="back" src="images/back.png" alt="Back" />
             </div>
 
             <div class="cat-card" data-cat-name="2">
@@ -236,7 +260,7 @@
                 data-src-key="2.png"
                 alt="2"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card3" class="back" src="images/back.png" alt="Back" />
             </div>
             <div class="cat-card" data-cat-name="2">
               <img
@@ -245,7 +269,7 @@
                 data-src-key="2.png"
                 alt="2"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card4" class="back" src="images/back.png" alt="Back" />
             </div>
 
             <div class="cat-card" data-cat-name="3">
@@ -255,7 +279,7 @@
                 data-src-key="3.png"
                 alt="3"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card5" class="back" src="images/back.png" alt="Back" />
             </div>
             <div class="cat-card" data-cat-name="3">
               <img
@@ -264,7 +288,7 @@
                 data-src-key="3.png"
                 alt="3"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card6" class="back" src="images/back.png" alt="Back" />
             </div>
 
             <div class="cat-card" data-cat-name="4">
@@ -274,7 +298,7 @@
                 data-src-key="4.png"
                 alt="4"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card7" class="back" src="images/back.png" alt="Back" />
             </div>
             <div class="cat-card" data-cat-name="4">
               <img
@@ -283,7 +307,7 @@
                 data-src-key="4.png"
                 alt="4"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card8" class="back" src="images/back.png" alt="Back" />
             </div>
 
             <div class="cat-card" data-cat-name="5">
@@ -293,7 +317,7 @@
                 data-src-key="5.png"
                 alt="5"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card9" class="back" src="images/back.png" alt="Back" />
             </div>
             <div class="cat-card" data-cat-name="5">
               <img
@@ -302,7 +326,7 @@
                 data-src-key="5.png"
                 alt="5"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card10" class="back" src="images/back.png" alt="Back" />
             </div>
 
             <div class="cat-card" data-cat-name="6">
@@ -312,7 +336,7 @@
                 data-src-key="6.png"
                 alt="6"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card11" class="back" src="images/back.png" alt="Back" />
             </div>
             <div class="cat-card" data-cat-name="6">
               <img
@@ -321,7 +345,7 @@
                 data-src-key="6.png"
                 alt="6"
               />
-              <img class="back" src="images/back.png" alt="Back" />
+              <img id="card12" class="back" src="images/back.png" alt="Back" />
             </div>
           </div>
         </div>
@@ -346,35 +370,277 @@
           </div>
         </div>
       </div>
+
+
+      <button id="shopBTN">
+        <i class="fas fa-shopping-cart"></i>
+        <span data-i18n-key="shopButton">Shop</span>
+      </button>
+      <section id="shopSection" class="closed">
+        <header class="shopSection_header">
+          <span class="shopSection_header_span_el" data-i18n-key="shopText"
+            >SHOP</span
+          >
+          <nav class="shopSection_nav">
+            <button
+              class="shopSection_header_nav_el"
+              data-i18n-key="shopCardsButton"
+              onclick="chngCrds()"
+            >
+              Cards
+            </button>
+            <button
+            id="bgs" 
+              class="shopSection_header_nav_el"
+              data-i18n-key="shopBackgroundsButton"
+              onclick="chngBGS()"
+            >
+              Backgrounds
+            </button>
+            
+          </nav>
+        </header>
+        <section id="section1MAG" class="shopSection_body">
+          <div
+            class="shopSection_body_items_itemContent_Selected"
+            id="cardReplacement_0"
+          >
+            <img 
+            src="images/back.png" 
+            alt="card style 0" />
+            <div
+              id="fader_0"
+              class="shopSection_body_items_itemContent_fader_Selected"
+              onclick="selectBack(this)"
+            >
+              <span
+                id="cardReplacementAvailabilityDescriber_0"
+                data-i18n-key="CardDesignLabelOnHover"
+                >select</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="shopSection_body_items_itemContent"
+            id="cardReplacement_1"
+          >
+            <img
+              src="images/card_backs/card1.png"
+              alt="card style 1"
+            />
+            <div
+              id="fader_1"
+              class="shopSection_body_items_itemContent_fader_notSelected"
+              onclick="selectBack(this)"
+            >
+              <span
+                id="cardReplacementAvailabilityDescriber_1"
+                data-i18n-key="CardDesignLabelOnHover"
+                >select</span
+              >
+            </div>
+          </div>
+
+          <div
+            id="cardReplacement_2"
+            class="shopSection_body_items_itemContent"
+          >
+            <img
+              src="images/card_backs/card2.png"
+              alt="card style 2"
+            />
+            <div
+              id="fader_2"
+              class="shopSection_body_items_itemContent_fader_notSelected"
+              onclick="selectBack(this)"
+            >
+              <span
+                id="cardReplacementAvailabilityDescriber_2"
+                data-i18n-key="CardDesignLabelOnHover"
+                >select</span
+              >
+            </div>
+          </div>
+
+          <div
+            id="cardReplacement_3"
+            class="shopSection_body_items_itemContent"
+          >
+            <img
+              src="images/card_backs/card3.png"
+              alt="card style 3"
+            />
+            <div
+              id="fader_3"
+              class="shopSection_body_items_itemContent_fader_notSelected"
+              onclick="selectBack(this)"
+            >
+              <span
+                id="cardReplacementAvailabilityDescriber_3"
+                data-i18n-key="CardDesignLabelOnHover"
+                >select</span
+              >
+            </div>
+          </div>
+
+          <div
+            id="cardReplacement_4"
+            class="shopSection_body_items_itemContent "
+          >
+            <img
+              src="images/card_backs/card4.png"
+              alt="card style 4"
+            />
+            <div
+              id="fader_4"
+              class="shopSection_body_items_itemContent_fader_notSelected"
+              onclick="selectBack(this)"
+            >
+              <span
+                id="cardReplacementAvailabilityDescriber_4"
+                data-i18n-key="CardDesignLabelOnHover"
+                >select</span
+              >
+            </div>
+          </div>
+
+      </section>
+
+      <section id="section2MAG" class="shopSection_body2 closed">
+        <div
+          class="shopSection_body_items_itemContent_Selected"
+          id="bgsReplacement_0"
+        >
+          <img 
+
+          src="images/bgs/bgs0.png" 
+          alt="card style 0" />
+          <div
+            id="bgsFader_0"
+            class="shopSection_body_items_itemContent_fader_Selected"
+            onclick="selectBgr(this)"
+          >
+            <span
+              id="bgsReplacementAvailabilityDescriber_0"
+              data-i18n-key="bgsDesignLabelOnHover"
+              >select</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="shopSection_body_items_itemContent"
+          id="bgsReplacement_1"
+        >
+          <img
+            src="images/bgs/bgs1.png"
+            alt="Coming soon"
+          />
+          <div
+            id="bgsFader_1"
+            class="shopSection_body_items_itemContent_fader_notSelected"
+            onclick="selectBgr(this)"
+          >
+            <span
+              id="bgsReplacementAvailabilityDescriber_1"
+              data-i18n-key="bgsDesignLabelOnHover"
+              >select</span
+            >
+          </div>
+        </div>
+
+        <div
+          id="bgsReplacement_2"
+          class="shopSection_body_items_itemContent"
+        >
+          <img
+            src="images/bgs/bgs2.png"
+            alt="card style 2"
+          />
+          <div
+            id="bgsFader_2"
+            class="shopSection_body_items_itemContent_fader_notSelected"
+            onclick="selectBgr(this)"
+          >
+            <span
+              id="bgsReplacementAvailabilityDescriber_2"
+              data-i18n-key="bgsDesignLabelOnHover"
+              >select</span
+            >
+          </div>
+        </div>
+
+        <div
+          id="bgsReplacement_3"
+          class="shopSection_body_items_itemContent"
+        >
+          <img
+            src="images/bgs/bgs3.png"
+            alt="card style 3"
+          />
+          <div
+            id="bgsFader_3"
+            class="shopSection_body_items_itemContent_fader_notSelected"
+            onclick="selectBgr(this)"
+          >
+            <span
+              id="bgsReplacementAvailabilityDescriber_3"
+              data-i18n-key="bgsDesignLabelOnHover"
+              >select</span
+            >
+          </div>
+        </div>
+
+        <div
+          id="bgsReplacement_4"
+          class="shopSection_body_items_itemContent "
+        >
+          <img
+            src="images/bgs/bgs4.png"
+            alt="card style 4"
+          />
+          <div
+            id="bgsFader_4"
+            class="shopSection_body_items_itemContent_fader_notSelected"
+            onclick="selectBgr(this)"
+          >
+            <span
+              id="bgsReplacementAvailabilityDescriber_4"
+              data-i18n-key="bgsDesignLabelOnHover"
+              >select</span
+            >
+          </div>
+        </div>
+
+      
+    </section>
+
+  
     </div>
     <div class="container-start card" id="SplashScreen">
       <img
-        style="height: 760px"
         class="card-img-top img-thumbnail"
         src="./images/StartLogo.jpg"
         id="start_logo"
         alt="Logo"
       />
-      <div class="card-img-overlay" style="margin-top: 300px">
-        <h6
-          style="
-            margin-top: 150px;
-            margin-left: 350px;
-            font-size: 50px;
-            font-weight: bold;
-            color: white;
-            font-family: type;
-          "
-        >
-          Избери тема:
-        </h6>
+      <div
+        class="card-img-overlay"
+        style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        "
+      >
+        <h6 id="chooseTheme">Избери тема:</h6>
         <div class="w-100 mb-4"></div>
-        <div class="mx-auto" style="width: 450px">
+        <div class="mx-auto" style="width: auto">
           <button
             type="button"
             data-mode="animal"
-            class="btn btn-outline-success btn-mode"
-            style="margin-left: 60px; margin-top: 30px; padding: 15px 20px"
+            class="btn btn-outline-success btn-mode start-button"
           >
             <h6
               data-i18n-key="animal_mode"
@@ -386,8 +652,7 @@
           <button
             type="button"
             data-mode="river"
-            class="btn btn-outline-warning btn-mode"
-            style="margin-top: 30px; margin-left: 10px; padding: 15px 20px"
+            class="btn btn-outline-warning btn-mode start-button"
           >
             <h6
               data-i18n-key="river_mode"
@@ -399,13 +664,7 @@
           <button
             type="button"
             data-mode="mount"
-            class="btn btn-outline-primary btn-mode"
-            style="
-              margin-left: 10px;
-              margin-top: 30px;
-              margin-right: 10px;
-              padding: 15px 20px;
-            "
+            class="btn btn-outline-primary btn-mode start-button"
           >
             <h6
               data-i18n-key="mount_mode"
