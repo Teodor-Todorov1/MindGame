@@ -1,132 +1,53 @@
-# MindGame
-1.	Theme: " MindGame "
-2.	Summary:
-2.1.	Objectives: 
-The project implements an online educational game and an administrative part for its settings aimed at familiarizing with curious facts related to nature and the animal world. The goal is to acquire new knowledge in a fun and interactive way, implemented in the form of a game.
-The target groups to which the project is directed include:
-•	Students in primary and basic education;
-•	Users wishing to combine gameplay with gaining new knowledge in a given subject area.
-And the innovative educational environment implemented in the form of a game will stimulate interest in obtaining new knowledge.
+# **MindGame: Elevating Education through Immersive Gameplay 🌍🧠**
 
-2.2.	Main stages in the implementation of the project:
-•	Researching the topic and consulting with subject area teachers;
-•	Searching for information in textbooks and study aids;
-•	Selection and editing of files and code;
-•	Shaping the visual appearance of the web application;
-•	Compilation of accompanying text and advertising documents;
-•	Presentation to children from primary and basic school years and other interested groups.
+## **Welcome to the MindGame Revolution: Where Learning Meets Entertainment**
 
-2.3.	Level of complexity of the project: The main problems in the preparation and realization of the product occurred in:
-•	Creating the necessary images and audio files and implementing them in the code;
-•	Compiling JS and PHP code;
-•	Integration of external libraries and APIs ( Application Programming interface )
-•	Shaping the design.
+### **Vision and Objectives:**
 
+MindGame represents a pioneering leap, seamlessly blending the exhilaration of gaming with the pursuit of knowledge. Our overarching goal is to nurture a profound curiosity for the intricate wonders of nature and the animal kingdom. This transcends traditional education, catering not only to the budding intellects of primary and basic education students but also to individuals seeking to broaden their intellectual horizons through an immersive and intellectually stimulating gameplay experience.
 
-2.4.	Logical and functional description of the solution:
+### **Setting Sail on a Quest for Discovery:**
 
-General description
-MindGame consists of three main modules – an online educational game for obtaining new facts and knowledge and an administrative module for creating and managing game data.
-After starting the game, a home screen is loaded from which users can select the theme of the game .
- 
+**A Treasury of Insight**: Our game is a continuously expanding repository of captivating facts, traversing the realms of animals, rivers, and mountains. With each strategic move, players unlock the secrets of our natural world, all while embarking on an exhilarating gaming adventure.
 
-Game start screen
-Currently there are three modes (Animals, Rivers and Mountains), and the good organization of the code allows for easy upgrading with new themes.
-The game is multilingual, and in addition to the facts, the entire interface also supports changing the language of messages. At the moment, two languages are supported (Bulgarian and English), but adding a new language is done by localizing messages in an exported text file.
-After selecting a theme, the user is directed to the main game screen. Its goal is to find the positions of all pairs of identical cards in the optimal time. After each correct move, the player learns an interesting fact in the relevant subject area. Upon successful completion of the game, the best results are reported in a special column.
+**Multilingual Mastery**: MindGame fluidly adapts to both Bulgarian and English languages, with the seamless integration of new languages facilitated by our sophisticated localization system.
 
+**Recognizing Excellence**: As you master the art of matching card pairs within the challenging two-minute timeframe, your achievements are celebrated on our esteemed leaderboard, solidifying your position among the elite.
 
-Functionality
-•	Each time the game is started, random positions for the card pairs are generated, optionally using the internal random number generator or one provided by an external API;
-•	In the lower right corner of the screen, an appropriate image points to the current topic
-•	After starting the game with a funny animation, an animated helper is visualized, which communicates interesting facts with each successfully detected pair of cards;
-•	In the result section, successfully completed games are counted - ended with the opening of all pairs of cards within two minutes. The remaining time is counted and visualized by the game;
-•	The records section stores the five best scores achieved by the players, upon achieving one the player is required to enter their name to be reflected in the leaderboard.
- 
+### **Full Immersion through Thematic Exploration:**
 
+**Dynamic Themes**: Choose from the captivating themes of Animals, Rivers, or Mountains, each granting access to a captivating realm. Our adaptable design infrastructure eagerly anticipates the introduction of new themes, ensuring that the MindGame experience remains perpetually fresh and captivating.
 
-Menu #1
-The menu consists of three buttons and displays the current topic:
- 
+**Empowering Administrators**: The administrative module, the nucleus of MindGame's educational prowess, empowers educators and enthusiasts with advanced data management, theme customization, and API testing capabilities.
 
-Menu #1
-•	Animals - Ability to switch to an animal theme
-•	Mountains - Ability to switch to a mountains theme
-•	Rivers - Ability to switch to a rivers theme
-Menu #2
-The menu consists of five buttons:
- 
+**Personalization Unleashed**: Elevate your gameplay with unique card designs and dynamic background options, all available at our virtual shop.
 
-Menu #2
-•	Facts - When clicked, you will be redirected to the Admin Board , which allows you to view the facts, enter the admin module and test the API providing the facts.
- 
-Admin Board Interface
+### **The Essence of MindGame: The Administrative Module**
 
-•	Stop sound - ability to start/stop background sound
-•	Change language - the ability to switch the interface and in-game facts in different languages
-•	Rules - a window with a brief description of the rules of the game
-•	Contacts - window with developer contact information
+**Cultivating Enrichment**: The administrative module lies at the heart of MindGame's educational prowess. It empowers educators to shape gameplay and knowledge dissemination. This module provides:
 
-Module for purchasing designs
-The game has a shop that provides the opportunity to purchase card designs as well as change the background.
- 
+1. **Mastery of Data**: Administrators wield the power to view, add, and meticulously edit facts across thematic areas—a treasure trove of knowledge, managed with precision.
 
-Administrative module
-The facts that are used can be generated from different sources:
-•	Embedded in the application as a text file;
-•	APIs external to the system providing such services;
-•	Using the administration API of the developed application, which provides facts on a random basis from those stored in the database.
+2. **API Prowess**: Educators can meticulously test the API providing facts, ensuring a seamless and enriched experience for our players.
 
-For this purpose, a web interface was developed with functionality for viewing, adding and editing facts and thematic areas.
-Unregistered users can only view the facts entered in the database and filter them by topic:
+3. **User Governance**: Administrators retain control over users, roles, and access rights—ensuring a secure, conducive environment for the pursuit of knowledge.
 
+4. **Interactive Features**: The ability to cease background sounds, switch interface languages, access game rules, and even find developer contact information—putting the reins of the MindGame universe squarely in the hands of administrators.
 
-Registered users are divided into the following roles:
-Administrator( admin)
-✔	It is possible to edit the roles and rights in the administration module
-✔	Has rights to perform basic CRUD operations on facts and categories
-✔	Has the right to view all users, edit their roles and remove them
- 
-teacher _ _ 
-✔	Has rights to perform basic CRUD operations on facts and categories
- 
-viewer _ _ 
-✔	Has the right to review facts and categories
+### **Technological Brilliance:**
 
+**Technologies**: MindGame is a symphony of HTML, JavaScript, CSS, Bootstrap, jQuery, ClippyJS, PHP, and Laravel—an intricate harmony of technologies orchestrating seamless functionality wrapped in captivating aesthetics.
 
-The administrative module is available on public hosting at the following URLs:
-https://facts.vtbg.eu/
+**Visual Artistry**: Adobe Photoshop brings our vibrant imagery to life, while Visual Studio Code serves as the forge where each element of the game is meticulously crafted.
 
-https://facts.vtbg.eu/admin/
+**Robust Infrastructure**: The synergy of Apache, MySQL, and Microsoft Office forms an unwavering foundation, ensuring seamless operations, robust documentation, and dynamic presentations.
 
-2.5.	Implementation :
-Used libraries and software technologies :
-•	HTML
-•	JavaScript
-•	CSS
-•	Bootstrap
-•	jQuery
-•	ClippyJS
-•	PHP
-•	Laravel
+### **Inviting Participation:**
 
-Software used :
-•	Adobe Photoshop ( trial ) - to create the design of images in the application;
+**Embark on the Revolution**: Immerse yourself in the MindGame revolution through our public hosting at [https://mindgame.vtbg.eu/](https://mindgame.vtbg.eu/). Experience the convergence of knowledge and play, a transformative journey that captivates, educates, and leaves you yearning for more.
 
-•	Visual Studio Code ( free ) – development environment (IDE);
+**Administrative Control**: Explore the administrative module at [https://facts.vtbg.eu/admin/](https://facts.vtbg.eu/admin/). It's a comprehensive hub of fact management, offering nuanced control and advanced testing capabilities for APIs.
 
-•	Apache - web server for the administrative part of the application
+### **Conclusion:**
 
-•	 MySQL – relational database management system used in the administrative part of the application
-
-•	Microsoft Office - to create the accompanying documentation and presentations.
-
-2.6.	Application Description: 
-
-The online game can be launched both locally (loading the home page index.html from the game folder) in the browser, and by loading the corresponding home URL from a web server. The game is available on public hosting 
-at the following URL: https://mindgame.vtbg.eu/ 
-To work with the administrative part of the application, it is necessary to install it on a working web server.
-2.7.	Conclusion: 
-In games, children set certain goals for themselves, strive to achieve them and experience joy from their achievements. In today's technological world, students find it difficult to stay focused on learning that is conducted using traditional educational approaches. The use of educational games contributes to increasing motivation and acquiring new knowledge.
-MindGame app enables students to easily access new facts and knowledge using modern web technologies.
-
+MindGame transcends being a mere game; it's a gateway to profound exploration, redefining the nexus of play and education. We recognize the boundless potential of playful learning, standing as torchbearers, shaping a transformative future. Join us on this exhilarating voyage to enlightenment, one captivating fact at a time! 🚀📚
